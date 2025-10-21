@@ -1,0 +1,76 @@
+{
+	"new": [
+		{
+			"title": "Windsor Noir",
+			"img": "./assets/imgs/tile-windsor-noir.webp",
+			"href": "https://www.instagram.com/daria.wind_photography/",
+			"tag": "New",
+			"alt": "Morticia-style portrait on a leaf-strewn path in front of a brick house in Windsor"
+		},
+		{
+			"title": "Silence of the Tower",
+			"img": "./assets/imgs/tile-silence-tower.webp",
+			"href": "https://www.instagram.com/daria.wind_photography/",
+			"tag": "New",
+			"alt": "Wednesday look with a stone tower in the background, cool fall light"
+		},
+		{
+			"title": "The Heir of Shadows",
+			"img": "./assets/imgs/the-hair-of-shadows.webp",
+			"href": "https://www.instagram.com/daria.wind_photography/",
+			"tag": "New",
+			"alt": "Girl in black dress standing on stone railing, gothic mood"
+		},
+		{
+			"title": "The Path Home",
+			"img": "./assets/imgs/the-path-home.webp",
+			"href": "https://www.instagram.com/daria.wind_photography/",
+			"alt": "Morticia figure framed by brick path and iron gate"
+		},
+		{
+			"title": "Dashflix Feature",
+			"img": "./assets/imgs/dashflix-wednesday.webp",
+			"href": "https://www.instagram.com/daria.wind_photography/",
+			"alt": "Title card for Windsor Wednesday in a streaming UI style"
+		}
+	],
+	"trending": [
+		{
+			"title": "October 31",
+			"img": "./assets/imgs/october-31.webp",
+			"href": "https://www.instagram.com/daria.wind_photography/",
+			"tag": "Hot",
+			"alt": "Morticia touches a stone plaque reading Willistead, Halloween vibe"
+		},
+		{
+			"title": "All Streets of Windsor",
+			"img": "./assets/imgs/all-streets.webp",
+			"href": "https://www.instagram.com/daria.wind_photography/",
+			"alt": "Wednesday walking on quiet Windsor street in autumn"
+		},
+		{
+			"title": "Streets: Halloween",
+			"img": "./assets/imgs/streets-halloween.webp",
+			"href": "https://www.instagram.com/daria.wind_photography/",
+			"alt": "Gothic walk-by shot with blurred background and fall colors"
+		},
+		{
+			"title": "Girls — Wednesday",
+			"img": "./assets/imgs/girls-wednesday.webp",
+			"href": "https://www.instagram.com/daria.wind_photography/",
+			"alt": "Close portrait of Wednesday look with braids and lace gloves"
+		},
+		{
+			"title": "Sitting Girls",
+			"img": "./assets/imgs/sitting-girls.webp",
+			"href": "https://www.instagram.com/daria.wind_photography/",
+			"alt": "Two-shot pose on stone ledge, moody light"
+		},
+		{
+			"title": "Matisia Look",
+			"img": "./assets/imgs/matisia-look.webp",
+			"href": "https://www.instagram.com/daria.wind_photography/",
+			"alt": "Morticia-inspired full body portrait with flowing sleeves"
+		}
+	]
+}

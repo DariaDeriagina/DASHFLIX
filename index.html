@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Dashflix — Windsor Wednesday · Part III</title>
+		<meta
+			name="description"
+			content="A cinematic, Netflix-style showcase of Daria Deriagina's Windsor Wednesday series."
+		/>
+		<link rel="icon" href="./assets/logo-dashflix.svg" />
+		<meta property="og:title" content="Dashflix — Windsor Wednesday" />
+		<meta
+			property="og:description"
+			content="Morticia & Wednesday photoshoot, presented like a streaming platform."
+		/>
+		<meta property="og:image" content="./assets/imgs/ww-hero.webp" />
+		<meta name="theme-color" content="#000000" />
+		<!-- Tailwind CDN (fast start) -->
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link rel="stylesheet" href="./assets/styles.css" />
+	</head>
+	<body class="bg-black text-zinc-100 antialiased">
+		<!-- Header / Left rail -->
+		<aside
+			class="fixed left-0 top-0 h-full w-16 md:w-20 bg-black/70 backdrop-blur border-r border-white/5 flex flex-col items-center py-4 gap-6 z-50"
+		>
+			<img
+				src="./assets/logo-dashflix.svg"
+				alt="Dashflix"
+				class="h-7 opacity-90"
+			/>
+			<nav class="flex flex-col gap-6 text-xs opacity-70">
+				<a href="#" class="hover:opacity-100">Home</a>
+				<a href="#new" class="hover:opacity-100">New</a>
+				<a href="#trending" class="hover:opacity-100">Trending</a>
+			</nav>
+		</aside>
+
+		<main class="pl-16 md:pl-20">
+			<!--MARK: HERO -->
+			<section class="relative">
+				<img
+					src="./assets/imgs/horizontal-main-windsor.webp"
+					alt="Windsor Wednesday cinematic banner"
+					class="w-full h-[52vh] md:h-[62vh] object-cover brightness-90"
+				/>
+
+				<div
+					class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"
+				></div>
+
+				<div class="absolute left-6 md:left-16 bottom-8 md:bottom-12 max-w-3xl">
+					<h1 class="text-2xl md:text-5xl font-semibold tracking-tight mb-3">
+						Windsor <span class="opacity-70">·</span> Part III
+					</h1>
+					<div
+						class="flex items-center gap-3 text-xs md:text-sm opacity-80 mb-4"
+					>
+						<span class="border border-white/20 px-2 py-0.5 rounded"
+							>IMDb 8.8/10</span
+						>
+						<span>2B+ streams</span>
+						<span>Windsor, Ontario</span>
+					</div>
+					<div class="flex gap-3">
+						<a
+							href="#new"
+							class="px-5 py-2 rounded bg-red-600 text-white font-medium hover:bg-red-500"
+							>Play</a
+						>
+						<a
+							href="https://www.instagram.com/daria.wind_photography/"
+							target="_blank"
+							class="px-5 py-2 rounded bg-white/10 hover:bg-white/20"
+							>Watch Trailer</a
+						>
+					</div>
+				</div>
+			</section>
+
+			<!-- Row: New this week -->
+			<section id="new" class="px-6 md:px-16 py-8 md:py-10">
+				<h2 class="text-xl md:text-2xl font-semibold mb-4">New this week</h2>
+				<div id="row-new" class="row-scroll"></div>
+			</section>
+
+			<!-- Row: Trending now -->
+			<section id="trending" class="px-6 md:px-16 py-2 md:py-4">
+				<h2 class="text-xl md:text-2xl font-semibold mb-4">Trending now</h2>
+				<div id="row-trending" class="row-scroll"></div>
+			</section>
+
+			<!-- Footer -->
+			<footer class="px-6 md:px-16 py-10 text-sm opacity-60">
+				© 2025 Daria Deriagina — DashDev Studio ·
+				<a class="underline" href="https://dash-dev.net" target="_blank"
+					>dash-dev.net</a
+				>
+			</footer>
+		</main>
+
+		<script type="module" src="./assets/app.js"></script>
+	</body>
+</html>
