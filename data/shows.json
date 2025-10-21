@@ -9,27 +9,27 @@
 		},
 		{
 			"title": "Silence of the Tower",
-			"img": "./assets/imgs/tile-silence-tower.webp",
+			"img": "./assets/imgs/tile-silence-tower.png",
 			"href": "https://www.instagram.com/daria.wind_photography/",
 			"tag": "New",
 			"alt": "Wednesday look with a stone tower in the background, cool fall light"
 		},
 		{
 			"title": "The Heir of Shadows",
-			"img": "./assets/imgs/the-hair-of-shadows.webp",
+			"img": "./assets/imgs/the-hair-of-shadows.png",
 			"href": "https://www.instagram.com/daria.wind_photography/",
 			"tag": "New",
 			"alt": "Girl in black dress standing on stone railing, gothic mood"
 		},
 		{
 			"title": "The Path Home",
-			"img": "./assets/imgs/the-path-home.webp",
+			"img": "./assets/imgs/the-path-home.png",
 			"href": "https://www.instagram.com/daria.wind_photography/",
 			"alt": "Morticia figure framed by brick path and iron gate"
 		},
 		{
 			"title": "Dashflix Feature",
-			"img": "./assets/imgs/dashflix-wednesday.webp",
+			"img": "./assets/imgs/dashflix-wednesday.png",
 			"href": "https://www.instagram.com/daria.wind_photography/",
 			"alt": "Title card for Windsor Wednesday in a streaming UI style"
 		}
@@ -37,7 +37,7 @@
 	"trending": [
 		{
 			"title": "October 31",
-			"img": "./assets/imgs/october-31.webp",
+			"img": "./assets/imgs/october-31.png",
 			"href": "https://www.instagram.com/daria.wind_photography/",
 			"tag": "Hot",
 			"alt": "Morticia touches a stone plaque reading Willistead, Halloween vibe"

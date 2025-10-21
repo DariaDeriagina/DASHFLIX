@@ -56,3 +56,31 @@
 	padding: 4px 8px;
 	border-radius: 999px;
 }
+/* 1) show the whole image on desktop (letterboxed) */
+@media (min-width: 1024px) {
+	.card img {
+		aspect-ratio: 16 / 9; /* desktop tile shape */
+		object-fit: contain; /* show entire vertical image */
+		background: #0b0b0b; /* subtle letterbox fill */
+	}
+}
+
+/* 2) move overlay text to the top */
+.meta {
+	bottom: 0;
+	top: auto;
+} /* current default (bottom) */
+.meta--top {
+	top: 0;
+	bottom: auto; /* pin to top */
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0.72), transparent);
+}
+
+/* hide scrollbar everywhere */
+.row-scroll::-webkit-scrollbar {
+	display: none;
+}
+.row-scroll {
+	-ms-overflow-style: none; /* IE & Edge */
+	scrollbar-width: none; /* Firefox */
+}

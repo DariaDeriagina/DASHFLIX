@@ -34,13 +34,10 @@ function cardHTML(item) {
 	return `
     <a class="card group" href="${
 			item.href || "#"
-		}" target="_blank" rel="noopener">
+		}" target="_blank" rel="noopener" aria-label="${item.title}">
       <img src="${item.img}" alt="${item.alt ?? item.title}" loading="lazy">
       ${item.tag ? `<span class="badge">${item.tag}</span>` : ""}
-      <div class="meta">
-        <div class="font-semibold">${item.title}</div>
-        <div class="opacity-70 text-xs">Windsor Wednesday · D Series</div>
-      </div>
+      <!-- removed the meta block -->
     </a>
   `;
 }
