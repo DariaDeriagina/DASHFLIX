@@ -16,6 +16,8 @@ async function loadRows() {
 		// store for lightbox navigation
 		galleries["row-new"] = data.new;
 		galleries["row-trending"] = data.trending;
+		// Combine all items for the Play slideshow
+		galleries["all"] = [...data.new, ...data.trending];
 
 		wireLightbox();
 	} catch (err) {
@@ -99,6 +101,25 @@ function wireLightbox() {
 		current.index = (current.index + delta + items.length) % items.length;
 		updateImage();
 	}
+	// expose open-all to outside
+	window.openAllSlideshow = function () {
+		open("all", 0);
+		startAutoplay((d) => nav(d));
+	};
+
+	// stop autoplay on any user action
+	btnPrev.addEventListener("click", () => stopAutoplay());
+	btnNext.addEventListener("click", () => stopAutoplay());
+	bg.addEventListener("click", () => stopAutoplay());
+	btnClose.addEventListener("click", () => stopAutoplay());
+	window.addEventListener("keydown", (e) => {
+		if (
+			!lb.classList.contains("hidden") &&
+			(e.key === "ArrowLeft" || e.key === "ArrowRight")
+		) {
+			stopAutoplay();
+		}
+	});
 
 	// keyboard: Esc / arrows
 	window.addEventListener("keydown", (e) => {
@@ -108,3 +129,26 @@ function wireLightbox() {
 		if (e.key === "ArrowRight") nav(1);
 	});
 }
+let autoplayTimer = null;
+const AUTOPLAY_MS = 3000; // 3s per slide
+
+function startAutoplay(navFn) {
+	stopAutoplay();
+	autoplayTimer = setInterval(() => navFn(1), AUTOPLAY_MS);
+}
+function stopAutoplay() {
+	if (autoplayTimer) {
+		clearInterval(autoplayTimer);
+		autoplayTimer = null;
+	}
+}
+document.addEventListener("DOMContentLoaded", () => {
+	const openGalleryBtn = document.getElementById("openGallery");
+	if (openGalleryBtn) {
+		openGalleryBtn.addEventListener("click", () => {
+			if (typeof window.openAllSlideshow === "function") {
+				window.openAllSlideshow();
+			}
+		});
+	}
+});
