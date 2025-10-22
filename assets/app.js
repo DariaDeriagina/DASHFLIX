@@ -38,12 +38,8 @@ function cardHTML(item, rowId, index) {
 	return `
     <button class="card group text-left" type="button"
             data-lightbox data-row="${rowId}" data-idx="${index}">
-      <img src="${item.img}" alt="${item.alt ?? item.title}">
+      <img src="${item.img}" alt="${item.alt ?? ""}">
       ${item.tag ? `<span class="badge">${item.tag}</span>` : ""}
-      <div class="meta">
-        <div class="font-semibold">${item.title}</div>
-        <div class="opacity-70 text-xs">Windsor Wednesday · D Series</div>
-      </div>
     </button>
   `;
 }
