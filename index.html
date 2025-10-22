@@ -4,7 +4,8 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Dashflix — Windsor Wednesday · Part III</title>
-		<!--MARK: Favicons -->
+
+		<!-- Favicons -->
 		<link
 			rel="apple-touch-icon"
 			sizes="180x180"
@@ -34,20 +35,47 @@
 			name="description"
 			content="A cinematic, Netflix-style showcase of Daria Deriagina's Windsor Wednesday series."
 		/>
-		<link rel="icon" href="./assets/logo-dashflix.svg" />
 		<meta property="og:title" content="Dashflix — Windsor Wednesday" />
 		<meta
 			property="og:description"
 			content="Morticia & Wednesday photoshoot, presented like a streaming platform."
 		/>
 		<meta property="og:image" content="./assets/imgs/ww-hero.webp" />
-		<meta name="theme-color" content="#000000" />
-		<!-- Tailwind CDN (fast start) -->
+
+		<!-- Tailwind (quick start) -->
 		<script src="https://cdn.tailwindcss.com"></script>
 		<link rel="stylesheet" href="./assets/styles.css" />
+
+		<!-- Minimal extra CSS just for the overlay -->
+		<style>
+			/* Smooth fade/scale for the modal */
+			.modal-enter {
+				opacity: 0;
+				transform: translateY(8px) scale(0.98);
+			}
+			.modal-enter-active {
+				opacity: 1;
+				transform: translateY(0) scale(1);
+				transition: opacity 0.2s ease, transform 0.2s ease;
+			}
+			.modal-exit {
+				opacity: 1;
+				transform: translateY(0) scale(1);
+			}
+			.modal-exit-active {
+				opacity: 0;
+				transform: translateY(8px) scale(0.98);
+				transition: opacity 0.18s ease, transform 0.18s ease;
+			}
+			/* When modal open, prevent background scroll */
+			.no-scroll {
+				overflow: hidden;
+			}
+		</style>
 	</head>
+
 	<body class="bg-black text-zinc-100 antialiased">
-		<!-- Header / Left rail -->
+		<!-- LEFT RAIL / NAV -->
 		<aside
 			class="fixed left-0 top-0 h-full w-16 md:w-20 bg-black/70 backdrop-blur border-r border-white/5 flex flex-col items-center py-4 gap-6 z-50"
 		>
@@ -64,19 +92,39 @@
 		</aside>
 
 		<main class="pl-16 md:pl-20">
-			<!--MARK: HERO -->
-			<section class="relative">
-				<img
-					src="./assets/imgs/horizontal-main-windsor.webp"
-					alt="Windsor Wednesday cinematic banner"
-					class="w-full h-[42vh] md:h-[52vh] object-cover object-top brightness-90"
-				/>
+			<!-- HERO (cinematic slider with arrows) -->
+			<section id="heroSection" class="relative overflow-hidden">
+				<!-- Slides -->
+				<div class="relative w-full h-[42vh] md:h-[52vh]">
+					<!-- Slide 1 -->
+					<img
+						src="./assets/imgs/horizontal-main-windsor.webp"
+						alt="Windsor Wednesday cinematic banner"
+						class="hero-slide absolute inset-0 w-full h-full object-cover object-top brightness-90 opacity-100 transition-opacity duration-700"
+					/>
+					<!-- Slide 2 -->
+					<img
+						src="./assets/imgs/main-picture-two.png"
+						alt="October 31 scene"
+						class="hero-slide absolute inset-0 w-full h-full object-cover object-top brightness-90 opacity-0 transition-opacity duration-700"
+					/>
+					<!-- Slide 3 -->
+					<img
+						src="./assets/imgs/main-picture-three.png"
+						alt="All Streets of Windsor"
+						class="hero-slide absolute inset-0 w-full h-full object-cover object-top brightness-90 opacity-0 transition-opacity duration-700"
+					/>
+				</div>
 
+				<!-- Gradient overlay -->
 				<div
 					class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"
 				></div>
 
-				<div class="absolute left-6 md:left-16 bottom-8 md:bottom-12 max-w-3xl">
+				<!-- Text content -->
+				<div
+					class="absolute left-6 md:left-16 bottom-8 md:bottom-12 max-w-3xl z-10"
+				>
 					<h1 class="text-2xl md:text-5xl font-semibold tracking-tight mb-3">
 						Windsor <span class="opacity-70">·</span> Part III
 					</h1>
@@ -95,14 +143,59 @@
 							class="px-5 py-2 rounded bg-red-600 text-white font-medium hover:bg-red-500"
 							>Play</a
 						>
-						<a
-							href="https://www.instagram.com/daria.wind_photography/"
-							target="_blank"
+						<button
+							id="openTrailer"
+							type="button"
 							class="px-5 py-2 rounded bg-white/10 hover:bg-white/20"
-							>Watch Trailer</a
 						>
+							Watch Trailer
+						</button>
 					</div>
 				</div>
+
+				<!-- Left Arrow -->
+				<button
+					id="prevSlide"
+					class="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 rounded-full p-2 md:p-3 z-20 transition"
+					aria-label="Previous slide"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke-width="2"
+						stroke="white"
+						class="w-5 h-5 md:w-6 md:h-6"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M15.75 19.5L8.25 12l7.5-7.5"
+						/>
+					</svg>
+				</button>
+
+				<!-- Right Arrow -->
+				<button
+					id="nextSlide"
+					class="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 rounded-full p-2 md:p-3 z-20 transition"
+					aria-label="Next slide"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke-width="2"
+						stroke="white"
+						class="w-5 h-5 md:w-6 md:h-6"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M8.25 4.5l7.5 7.5-7.5 7.5"
+						/>
+					</svg>
+				</button>
 			</section>
 
 			<!-- Row: New this week -->
@@ -136,6 +229,223 @@
 			</footer>
 		</main>
 
+		<!-- TRAILER OVERLAY (Centered Netflix-style modal, no tip) -->
+		<div
+			id="trailerBackdrop"
+			class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+			aria-hidden="true"
+		>
+			<!-- Clickable background to close -->
+			<div class="absolute inset-0" id="backdropClick"></div>
+
+			<!-- Dialog -->
+			<section
+				id="trailerDialog"
+				role="dialog"
+				aria-modal="true"
+				aria-label="Trailer"
+				class="relative z-[61] w-full max-w-5xl rounded-2xl overflow-hidden border border-white/10 shadow-2xl modal-enter bg-black/50 flex flex-col"
+			>
+				<!-- Top bar with Dashflix logo -->
+				<div
+					class="flex items-center justify-between px-4 md:px-5 py-3 bg-black/40 border-b border-white/10"
+				>
+					<a
+						href="#"
+						id="logoHome"
+						class="flex items-center gap-2 hover:opacity-90"
+					>
+						<img
+							src="./assets/logo-dashflix.svg"
+							alt="Dashflix"
+							class="h-6 md:h-7"
+						/>
+						<span
+							class="hidden md:inline text-xs uppercase tracking-wider opacity-80"
+							>Home</span
+						>
+					</a>
+					<button
+						id="closeTrailer"
+						class="p-2 rounded bg-white/10 hover:bg-white/20"
+						aria-label="Close trailer (Esc)"
+					>
+						✕
+					</button>
+				</div>
+
+				<!-- Video -->
+				<div class="bg-black flex justify-center items-center">
+					<video
+						id="trailerVideo"
+						class="w-full h-auto max-h-[75vh] rounded-none md:rounded-b-xl"
+						controls
+						preload="none"
+						playsinline
+						poster="./assets/imgs/horizontal-main-windsor.webp"
+					></video>
+				</div>
+			</section>
+		</div>
+		<!-- LIGHTBOX (full-screen image modal) -->
+		<div id="lightbox" class="fixed inset-0 z-[70] hidden">
+			<!-- dark backdrop -->
+			<div
+				id="lightboxBg"
+				class="absolute inset-0 bg-black/90 backdrop-blur-sm"
+			></div>
+
+			<!-- content -->
+			<div class="relative h-full w-full flex items-center justify-center p-4">
+				<!-- image -->
+				<img
+					id="lightboxImg"
+					src=""
+					alt=""
+					class="max-h-[90vh] max-w-[92vw] object-contain rounded-lg shadow-2xl border border-white/10"
+				/>
+
+				<!-- close -->
+				<button
+					id="lightboxClose"
+					class="absolute top-4 right-4 md:top-6 md:right-6 p-2 rounded bg-white/10 hover:bg-white/20"
+					aria-label="Close"
+				>
+					✕
+				</button>
+
+				<!-- prev / next -->
+				<button
+					id="lightboxPrev"
+					class="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 px-3 py-2 rounded bg-white/10 hover:bg-white/20 select-none"
+					aria-label="Previous"
+				>
+					‹
+				</button>
+				<button
+					id="lightboxNext"
+					class="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 px-3 py-2 rounded bg-white/10 hover:bg-white/20 select-none"
+					aria-label="Next"
+				>
+					›
+				</button>
+			</div>
+		</div>
+
+		<!-- Your existing cards renderer -->
 		<script type="module" src="./assets/app.js"></script>
+
+		<!-- Overlay control JS (tiny, self-contained) -->
+		<script>
+			const openBtn = document.getElementById("openTrailer");
+			const backdrop = document.getElementById("trailerBackdrop");
+			const dialogEl = document.getElementById("trailerDialog");
+			const closeBtn = document.getElementById("closeTrailer");
+			const bgClick = document.getElementById("backdropClick");
+			const videoEl = document.getElementById("trailerVideo");
+			const logoHome = document.getElementById("logoHome");
+
+			// Your trailer files (adjust names if needed)
+			const TRAILER_SOURCES = [
+				{ src: "./video/trailerwindsor.webm", type: "video/webm" },
+				{ src: "./video/trailerwindsor.mp4", type: "video/mp4" }, // optional fallback
+			];
+
+			function mountSources() {
+				if (videoEl.children.length) return; // already mounted
+				TRAILER_SOURCES.forEach((s) => {
+					const source = document.createElement("source");
+					source.src = s.src;
+					source.type = s.type;
+					videoEl.appendChild(source);
+				});
+				// Load now that sources exist
+				videoEl.load();
+			}
+
+			function openModal() {
+				mountSources();
+				document.documentElement.classList.add("no-scroll");
+				backdrop.classList.remove("hidden");
+				// animate in
+				requestAnimationFrame(() => {
+					dialogEl.classList.add("modal-enter-active");
+				});
+				// autoplay muted (safer for autoplay policies) — user can unmute
+				videoEl.muted = true;
+				videoEl.play().catch(() => {
+					/* ignore */
+				});
+				// focus close for accessibility
+				closeBtn.focus();
+				backdrop.setAttribute("aria-hidden", "false");
+			}
+
+			function closeModal() {
+				// animate out
+				dialogEl.classList.remove("modal-enter-active");
+				dialogEl.classList.add("modal-exit");
+				requestAnimationFrame(() =>
+					dialogEl.classList.add("modal-exit-active")
+				);
+				// stop video
+				videoEl.pause();
+				// after transition, hide
+				setTimeout(() => {
+					backdrop.classList.add("hidden");
+					dialogEl.classList.remove("modal-exit", "modal-exit-active");
+					document.documentElement.classList.remove("no-scroll");
+					backdrop.setAttribute("aria-hidden", "true");
+					openBtn.focus();
+				}, 180);
+			}
+
+			openBtn?.addEventListener("click", openModal);
+			closeBtn?.addEventListener("click", closeModal);
+			bgClick?.addEventListener("click", (e) => {
+				if (e.target === bgClick) closeModal();
+			});
+			logoHome?.addEventListener("click", (e) => {
+				e.preventDefault();
+				closeModal();
+			});
+
+			// ESC to close
+			window.addEventListener("keydown", (e) => {
+				if (
+					e.key === "Escape" &&
+					backdrop &&
+					!backdrop.classList.contains("hidden")
+				)
+					closeModal();
+			});
+		</script>
+		<script>
+			const slides = document.querySelectorAll(".hero-slide");
+			let currentSlide = 0;
+
+			function showSlide(index) {
+				slides.forEach((s, i) => {
+					s.style.opacity = i === index ? "1" : "0";
+					s.style.zIndex = i === index ? "1" : "0";
+				});
+			}
+
+			document.getElementById("nextSlide").addEventListener("click", () => {
+				currentSlide = (currentSlide + 1) % slides.length;
+				showSlide(currentSlide);
+			});
+
+			document.getElementById("prevSlide").addEventListener("click", () => {
+				currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+				showSlide(currentSlide);
+			});
+
+			// Optional: auto-rotate every 6s
+			setInterval(() => {
+				currentSlide = (currentSlide + 1) % slides.length;
+				showSlide(currentSlide);
+			}, 6000);
+		</script>
 	</body>
 </html>
